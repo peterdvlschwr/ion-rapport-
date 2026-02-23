@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>IONshorts — 5 Maanden Rapport</title>
+<style>
+  @font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Light'), url('klavika-light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Regular'), url('klavika-regular-italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Medium'), url('klavika-medium.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Bold'), url('klavika-bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0a0a0a;
+    --white:   #ffffff;
+    --pink:    #e8003d;        /* ION accent — refined hot pink/red */
+    --grey-1:  #f5f5f5;
+    --grey-2:  #e8e8e8;
+    --grey-3:  #999;
+    --ig:      #E1306C;
+    --fb:      #1877F2;
+    --li:      #0A66C2;
+    --tt:      #0a0a0a;
+    --yt:      #FF0000;
+  }
+
+  body {
+    font-family: 'Klavika', 'Inter', sans-serif;
+    font-size: 8.5pt;
+    color: var(--black);
+    background: var(--white);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 5mm 10mm 5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left {}
+  .header-tagline {
+    font-size: 7pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pink);
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 17pt;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: var(--white);
+  }
+  .header h1 span { color: var(--pink); }
+  .header-right {
+    text-align: right;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+  }
+  .header-right strong { color: var(--white); }
+
+  /* ── BODY WRAPPER ── */
+  .body {
+    padding: 4mm 10mm 4mm;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--grey-3);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--grey-2);
+  }
+
+  .mb-8  { margin-bottom: 5px; }
+  .mb-10 { margin-bottom: 6px; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+
+  /* ── KPI FOLLOWER CARDS ── */
+  .kpi {
+    background: var(--grey-1);
+    border-radius: 4px;
+    padding: 5px 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+  }
+  .kpi.ig::before { background: var(--ig); }
+  .kpi.fb::before { background: var(--fb); }
+  .kpi.li::before { background: var(--li); }
+  .kpi.tt::before { background: var(--tt); }
+  .kpi.yt::before { background: var(--yt); }
+  .kpi.tot::before { background: var(--pink); }
+
+  .kpi .platform {
+    font-size: 6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--grey-3);
+    margin-bottom: 3px;
+  }
+  .kpi .growth {
+    font-size: 12pt;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1;
+  }
+  .kpi.tot .growth { color: var(--pink); }
+  .kpi .abs {
+    font-size: 6.5pt;
+    color: var(--grey-3);
+    margin-top: 2px;
+  }
+  .kpi .range {
+    font-size: 6pt;
+    color: #bbb;
+    margin-top: 1px;
+  }
+
+  /* ── VIEWS PANEL ── */
+  .views-panel {
+    background: var(--black);
+    border-radius: 4px;
+    padding: 6px 9px;
+    color: var(--white);
+  }
+  .views-panel .vp-label {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 7px;
+  }
+  .month-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 2px;
+  }
+  .month-row:last-child { margin-bottom: 0; }
+  .m-label {
+    font-size: 7pt;
+    font-weight: 600;
+    width: 52px;
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.8);
+  }
+  .bar-track {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    height: 8px;
+  }
+  .bar-fill {
+    height: 8px;
+    border-radius: 2px;
+    background: var(--pink);
+  }
+  .m-val {
+    font-size: 7pt;
+    font-weight: 700;
+    width: 52px;
+    text-align: right;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .views-summary {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 4px;
+    padding-top: 4px;
+    display: flex;
+    gap: 12px;
+  }
+  .vs-item {}
+  .vs-num {
+    font-size: 9pt;
+    font-weight: 900;
+    color: var(--pink);
+    line-height: 1;
+  }
+  .vs-lbl {
+    font-size: 6pt;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+  }
+
+  /* ── VIDEO TABLES ── */
+  .video-block {
+    border: 1px solid var(--grey-2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .vb-head {
+    background: var(--black);
+    color: var(--white);
+    padding: 5px 9px;
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vb-head.worst { background: #1a0005; }
+  .vb-head .vb-badge {
+    font-size: 6pt;
+    background: var(--pink);
+    color: white;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .vb-head.worst .vb-badge { background: #e8003d88; color: #ffaabc; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-size: 6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--grey-3);
+    padding: 3px 7px 2px;
+    text-align: left;
+    background: var(--grey-1);
+    border-bottom: 1px solid var(--grey-2);
+  }
+  th.r { text-align: right; }
+  td {
+    font-size: 7pt;
+    padding: 2.5px 7px;
+    border-bottom: 1px solid #f2f2f2;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  td.bold { font-weight: 700; }
+
+  .rank-num {
+    font-weight: 700;
+    font-size: 7pt;
+    color: var(--grey-3);
+  }
+  .rank-1 { color: #b8860b; }
+  .rank-2 { color: #888; }
+  .rank-3 { color: #a0522d; }
+  .rank-bad { color: var(--pink); }
+
+  .views-pill {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .worst .views-pill { background: #fff0f3; color: var(--pink); }
+
+  .channel-dots { font-size: 6pt; color: var(--grey-3); }
+
+  /* ── ANALYSIS BOXES ── */
+  .analysis-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+
+  .abox {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .abox-head {
+    padding: 5px 9px;
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .abox-body {
+    padding: 5px 8px;
+  }
+  .abox ul { list-style: none; padding: 0; }
+  .abox li {
+    font-size: 6.5pt;
+    line-height: 1.45;
+    padding: 1.5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+  }
+  .abox li:last-child { border-bottom: none; }
+  .abox li .icon { flex-shrink: 0; margin-top: 1px; }
+  .abox li b { font-weight: 700; }
+
+  .abox.stop .abox-head { background: #1a0005; color: var(--pink); }
+  .abox.stop .abox-body { background: #fff8f9; }
+  .abox.stop li .icon { color: var(--pink); }
+
+  .abox.go .abox-head { background: #001a09; color: #00c851; }
+  .abox.go .abox-body { background: #f6fff9; }
+  .abox.go li .icon { color: #2e7d32; }
+
+  .abox.tips .abox-head { background: var(--black); color: rgba(255,255,255,0.7); }
+  .abox.tips .abox-head .icon { color: var(--pink); }
+  .abox.tips .abox-body { background: var(--grey-1); }
+  .abox.tips li .icon { color: var(--pink); }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: #fffbf0;
+    border: 1px solid #ffe082;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 6pt;
+    color: #7a5c00;
+    margin-bottom: 5px;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .disclaimer .di { flex-shrink: 0; font-size: 8pt; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--black);
+    padding: 3mm 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer .ion-logo {
+    font-size: 12pt;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .footer .ion-logo span { color: var(--pink); }
+  .footer .footer-meta {
+    font-size: 6pt;
+    color: rgba(255,255,255,0.35);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  @media print {
+    body { margin: 0; width: 210mm; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div class="header-left">
+    <div style="display:flex;align-items:flex-end;gap:6px;margin-bottom:6px;">
+      <div style="background:white;border-radius:3px;padding:1px 4px;display:flex;align-items:center;">
+        <img src="ion_logo.png" style="height:13px;width:auto;" alt="ION logo">
+      </div>
+      <span style="font-family:'Klavika',sans-serif;font-weight:700;font-size:7.5pt;color:white;letter-spacing:0px;">develop different</span>
+    </div>
+    <div class="header-tagline">Organische Shorts</div>
+    <h1>ION<span>shorts</span><br>5 Maanden</h1>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <img src="noads_transparent.png" style="height:22px;width:auto;" alt="No Ads logo">
+      <span style="font-family:'Klavika',sans-serif;font-weight:700;font-size:7.5pt;color:white;letter-spacing:0px;position:relative;top:2px;">NO ADS</span>
+    </div>
+  <div class="header-right">
+    <strong>Oktober 2025 – Maart 2026</strong><br>
+    47 videos gepubliceerd<br>
+    1.758.092 totale views*<br>
+    Organisch bereik — geen betaalde promotie
+  </div>
+  </div>
+</div>
+
+<!-- ══ BODY ══ -->
+<div class="body">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <span class="di">⚠</span>
+    <span><strong>* Opgelet:</strong> Alle viewcijfers werden op een specifiek moment manueel geregistreerd. Omdat video's continu views blijven verzamelen, liggen de werkelijke cijfers <strong>hoger</strong> dan wat hier vermeld staat. Beschouw deze data als minimumwaarden.</span>
+  </div>
+
+  <!-- ── SECTION 1: FOLLOWERS + VIEWS ── -->
+  <div class="section-label mb-8">Followergroei per kanaal — Oktober 2025 → Maart 2026</div>
+
+  <div class="grid-6 mb-10">
+    <div class="kpi ig">
+      <div class="platform">Instagram</div>
+      <div class="growth">+14,6%</div>
+      <div class="abs">+902 volgers</div>
+      <div class="range">6.180 → 7.082</div>
+    </div>
+    <div class="kpi fb">
+      <div class="platform">Facebook</div>
+      <div class="growth">+5,3%</div>
+      <div class="abs">+601 volgers</div>
+      <div class="range">11.299 → 11.900</div>
+    </div>
+    <div class="kpi li">
+      <div class="platform">LinkedIn</div>
+      <div class="growth">+3,8%</div>
+      <div class="abs">+661 volgers</div>
+      <div class="range">17.356 → 18.017</div>
+    </div>
+    <div class="kpi tt">
+      <div class="platform">TikTok</div>
+      <div class="growth">+1.167%</div>
+      <div class="abs">+525 volgers</div>
+      <div class="range">45 → 570</div>
+    </div>
+    <div class="kpi yt">
+      <div class="platform">YouTube</div>
+      <div class="growth">+28,6%</div>
+      <div class="abs">+18 volgers</div>
+      <div class="range">63 → 81</div>
+    </div>
+    <div class="kpi tot">
+      <div class="platform">Totaal</div>
+      <div class="growth">+7,8%</div>
+      <div class="abs" style="font-size:9pt;font-weight:900;color:var(--black);">+2.707 volgers</div>
+      <div class="range">34.943 → 37.650</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: VIEWS BAR ── -->
+  <div class="section-label mb-8">Views per maand (alle kanalen gecombineerd)*</div>
+
+  <div class="views-panel mb-10">
+    <div class="month-row">
+      <span class="m-label">Oktober</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div>
+      <span class="m-val">704.120*</span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">November</span>
+      <div class="bar-track"><div class="bar-fill" style="width:53%;"></div></div>
+      <span class="m-val">376.701*</span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">December</span>
+      <div class="bar-track"><div class="bar-fill" style="width:48%;"></div></div>
+      <span class="m-val">341.088*</span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">Januari</span>
+      <div class="bar-track"><div class="bar-fill" style="width:33%;"></div></div>
+      <span class="m-val">235.054*</span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">Februari ⏳</span>
+      <div class="bar-track"><div class="bar-fill" style="width:14%; opacity:0.6;"></div></div>
+      <span class="m-val" style="opacity:0.6;">101.129*</span>
+    </div>
+    <div class="views-summary">
+      <div class="vs-item">
+        <div class="vs-num">1.758.092*</div>
+        <div class="vs-lbl">Totaal views</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">47</div>
+        <div class="vs-lbl">Video's gepost</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">~37.400*</div>
+        <div class="vs-lbl">Gem. per video</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">Facebook</div>
+        <div class="vs-lbl">Sterkste kanaal</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">TikTok</div>
+        <div class="vs-lbl">Snelst groeiend</div>
+      </div>
+    </div>
+    <div style="font-size:6pt;color:rgba(255,255,255,0.25);margin-top:5px;">⏳ Februari is een lopende maand — data nog niet volledig</div>
+  </div>
+
+  <!-- ── SECTION 3: TOP + WORST ── -->
+  <div class="section-label mb-8">Videoprestaties — Top &amp; Slechtste performers</div>
+
+  <div class="grid-2 mb-10">
+
+    <!-- TOP 5 -->
+    <div class="video-block">
+      <div class="vb-head">
+        <span>Top 5 Videos</span>
+        <span class="vb-badge">Totale views*</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16px;">#</th>
+            <th>Video</th>
+            <th>Maand</th>
+            <th class="r">Views*</th>
+            <th class="r">Best kanaal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num rank-1">1</td>
+            <td class="bold">Villa (Maarten)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill">269.118</span></td>
+            <td class="r channel-dots">IG · FB · TT</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-2">2</td>
+            <td class="bold">BTW (Davy)</td>
+            <td style="font-size:6.5pt;color:#999;">Jan</td>
+            <td class="r"><span class="views-pill">125.375</span></td>
+            <td class="r channel-dots">FB dominant</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-3">3</td>
+            <td class="bold">WBP (Davy)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill">125.194</span></td>
+            <td class="r channel-dots">FB · TT · LI</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="bold">Kortrijk (Kristof)</td>
+            <td style="font-size:6.5pt;color:#999;">Nov</td>
+            <td class="r"><span class="views-pill">113.736</span></td>
+            <td class="r channel-dots">FB dominant</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="bold">Co-living II (Sander)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill">112.980</span></td>
+            <td class="r channel-dots">FB dominant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WORST 5 -->
+    <div class="video-block worst">
+      <div class="vb-head worst">
+        <span>Slechtste 5 Videos</span>
+        <span class="vb-badge">Totale views*</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16px;">#</th>
+            <th>Video</th>
+            <th>Maand</th>
+            <th class="r">Views*</th>
+            <th class="r">Reden</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num rank-bad">1</td>
+            <td class="bold">Hitte-eilanden (Sander)</td>
+            <td style="font-size:6.5pt;color:#999;">Feb</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">1.570</span></td>
+            <td class="r channel-dots">NL locatie, BE publiek</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">2</td>
+            <td class="bold">Co-living (Sander)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">6.741</span></td>
+            <td class="r channel-dots">Geen locatie in hook</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">3</td>
+            <td class="bold">GRESB (Sam)</td>
+            <td style="font-size:6.5pt;color:#999;">Dec</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">7.027</span></td>
+            <td class="r channel-dots">Technisch, nobody cares</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">4</td>
+            <td class="bold">Burenhof (Sander)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">8.475</span></td>
+            <td class="r channel-dots">Mensen willen het niet zien</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">5</td>
+            <td class="bold">Happy Holidays (Rik)</td>
+            <td style="font-size:6.5pt;color:#999;">Dec</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">8.831</span></td>
+            <td class="r channel-dots">Seizoens, nul value</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 4: BEFORE / AFTER ── -->
+  <div class="section-label mb-8">Voor vs Na — Organisch bereik per kanaal (eigen pagina, vóór IONshorts)</div>
+
+  <!-- CHANNEL COMPARISON TABLE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+
+    <!-- FACEBOOK -->
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">Facebook</span>
+        <span style="font-size:6pt;background:#1877F2;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">f</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">100–500</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">views/video organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">34 · 141 · 191 · 212 · 242<br>245 · 271 · 277 · 278 · 466<br><span style="color:#e8a000;">⚠ Vermoedelijk geboost: 5.5K · 6K · 6K · 7.2K · 7.8K · 7.8K · 8.2K · 9K · 9.4K · 9.9K · 10K · 12K · 14K · 19K · 65K</span></div>
+        </div>
+        <div style="background:var(--black);display:flex;align-items:center;padding:0 8px;">
+          <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">~28.600<span style="font-size:8pt;font-weight:400;color:rgba(255,255,255,0.3);">*</span></div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">gem. views/video op FB</div>
+          <div style="margin-top:5px;">
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">×57–286</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);margin-left:4px;">meer bereik</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">Instagram</span>
+        <span style="font-size:6pt;background:#E1306C;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">IG</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">400–1.500</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">views/video — 100% organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">448 · 457 · 468 · 478 · 482 · 484 · 504 · 724 · 858 · 867<br><span style="color:#888;">Geen enkele post geboost. Gewoon consistent laag organisch bereik.</span></div>
+        </div>
+        <div style="background:var(--black);display:flex;align-items:center;padding:0 8px;">
+          <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">~6.500<span style="font-size:8pt;font-weight:400;color:rgba(255,255,255,0.3);">*</span></div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">gem. views/video op IG</div>
+          <div style="margin-top:5px;">
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">×4–16</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);margin-left:4px;">meer bereik</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN -->
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">LinkedIn</span>
+        <span style="font-size:6pt;background:#0A66C2;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">in</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór — feb–sep 2025 (7 mnd)</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">160.886</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">impressies · 100% organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">
+            ~22.984/maand<br>
+            3.070 reacties · 146 comments<br>
+            <span style="color:#888;">0 gesponsord</span>
+          </div>
+        </div>
+        <div style="background:var(--black);display:flex;align-items:center;padding:0 8px;">
+          <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts — okt 2025–feb 2026 (5 mnd)</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">370.914</div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">impressies · 100% organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:rgba(255,255,255,0.5);line-height:1.7;">
+            ~74.183/maand<br>
+            3.849 reacties · 92 comments
+          </div>
+          <div style="margin-top:4px;">
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">+223,9%</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);margin-left:4px;">per maand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OVERALL SUMMARY BAR -->
+  <div style="background:var(--black);border-radius:4px;padding:8px 12px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:10px;align-items:center;margin-bottom:10px;">
+    <div>
+      <div style="font-size:7pt;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:1px;">IONshorts totaalresultaat — 100% organisch, €0 ad budget</div>
+      <div style="font-size:6pt;color:rgba(255,255,255,0.35);margin-top:2px;">TikTok: nieuw kanaal, gestart van 0 volgers · YouTube: laagste views maar waardevol voor SEO</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13pt;font-weight:900;color:white;line-height:1;">1,75M+</div>
+      <div style="font-size:6pt;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:1px;">totale views*</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13pt;font-weight:900;color:white;line-height:1;">37.400</div>
+      <div style="font-size:6pt;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:1px;">gem. per video*</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13pt;font-weight:900;color:var(--pink);line-height:1;">+1.167%</div>
+      <div style="font-size:6pt;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:1px;">TikTok groei</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:13pt;font-weight:900;color:white;line-height:1;">€0</div>
+      <div style="font-size:6pt;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:1px;">ad budget</div>
+    </div>
+  </div>
+
+  <!-- ── STRATEGIC VALUE BLOCK ── -->
+  <div style="border:1.5px solid var(--pink);border-radius:5px;padding:8px 12px;margin-bottom:8px;background:#fafafa;">
+    <div style="font-size:7pt;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;">Waarom organische zichtbaarheid strategisch cruciaal is</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">📍 Top of mind</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Kopers nemen gemiddeld <b>14 touchpoints</b> voordat ze een beslissing nemen. Mensen kopen of investeren vandaag misschien niet — maar over 6, 12 of 24 maanden wel. Op dat moment moeten ze <b>spontaan aan ION denken</b> en rechtstreeks naar de website gaan — in plaats van eerst via Google of ChatGPT te zoeken. Hetzelfde geldt voor sollicitanten: wanneer iemand wil veranderen van job, moet ION het eerste bedrijf zijn dat opkomt.</div>
+      </div>
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">📈 Synergie met paid ads</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Organische zichtbaarheid maakt advertenties <b>efficiënter</b>: mensen die ION al kennen, klikken vaker en converteren sneller. Omgekeerd versterkt paid bereik ook de organische herkenbaarheid. De twee versterken elkaar — organisch bouwt vertrouwen, betaald versnelt. <b>Organische views zijn de belangrijkste leading indicator</b> — relevante kijkers die meerdere keren terugkomen bouwen top-of-mind awareness op die zich vertaalt in merkvoorkeur.</div>
+      </div>
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">🧪 Gratis ad-validatie</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Een video die organisch <b>+10.000 views</b> haalt over alle platformen, is bewezen content. Die kan rechtstreeks als advertentie worden ingezet — <b>zonder eerst budget te verbranden om te testen</b>. Zo werkt het organisch kanaal als gratis testomgeving die bepaalt wat werkt voordat er één euro aan ads gespendeerd wordt.</div>
+      </div>
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">🎯 Meten &amp; opvolgen</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Organisch is minder direct meetbaar, maar de impact is reëel. Maak het meetbaar: <b>sales vraagt elke lead</b> hoe ze bij ION zijn terechtgekomen en of ze al video's hebben gezien. <b>HR vraagt elke kandidaat</b> hoe ze ION leren kennen. Log dit in CRM. Consistente zichtbaarheid rond vastgoedprojecten bouwt merkherkenning, vertrouwen, sales-pipeline én employer brand.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: ANALYSIS ── -->
+  <div class="section-label mb-8">Strategie — Analyse &amp; Aanbevelingen</div>
+
+  <div class="analysis-grid">
+
+    <div class="abox stop">
+      <div class="abox-head">
+        <span class="icon">✕</span> Wat stoppen we mee
+      </div>
+      <div class="abox-body">
+        <ul>
+          <li><span class="icon">✕</span><span><b>Seizoensgroeten</b> — iedereen post dan, concurrentie piekt, content heeft nul waarde voor de kijker; beter posten op momenten met minder concurrentie</span></li>
+          <li><span class="icon">✕</span><span><b>Puur technisch B2B</b> (GRESB, forward funding) — te niche voor shorts</span></li>
+          <li><span class="icon">✕</span><span><b>Scripted content</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="abox go">
+      <div class="abox-head">
+        <span class="icon">✓</span> Wat zetten we door
+      </div>
+      <div class="abox-body">
+        <ul>
+          <li><span class="icon">✓</span><span><b>Wetgeving, nieuws &amp; viral topics</b> — eigen variant maken van wat al viral gaat + actuele RE-topics zoals BTW (bewezen formule)</span></li>
+          <li><span class="icon">✓</span><span><b>Projectvoorstellingen</b> — mensen willen weten wat er gebouwd wordt in hun stad (zie Villa (Maarten): 269K views)</span></li>
+          <li><span class="icon">✓</span><span><span style="display:inline-block;background:var(--pink);color:white;font-size:5.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 5px;border-radius:3px;vertical-align:middle;margin-right:5px;">★ Suggestie</span><b>Overal posten</b> — TikTok snelst groeiend, YouTube cruciaal voor SEO &amp; vindbaarheid; overal posten: X, Snapchat &amp; Threads — we hebben het toch, meer kanalen = meer kansen</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="abox tips">
+      <div class="abox-head">
+        <span class="icon" style="color:var(--pink);">→</span> Algemene tips
+      </div>
+      <div class="abox-body">
+        <ul>
+          <li><span class="icon">→</span><span><b>2x/week ritme</b> — woe &amp; vrij presteren beter</span></li>
+          <li><span class="icon">→</span><span><b>De gouden vraag</b> — kan een andere vastgoedspeler dit ook doen? Zo ja: niet doen</span></li>
+          <li><span class="icon">→</span><span><b>Unieke ION projecten</b> — toon wat niemand anders kan tonen</span></li>
+          <li><span class="icon">→</span><span><b>Document vs Create</b> — toon wat ION doet, echte gesprekken &amp; interacties op de werkvloer</span></li>
+          <li><span class="icon">→</span><span><b>Personage is cruciaal</b> — de persoon op camera bepaalt of mensen terugkomen</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── STRUCTURELE CONTENTSHIFT ── -->
+  <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;margin-top:6px;">
+    <div style="background:var(--black);padding:4px 10px;display:flex;align-items:center;gap:6px;">
+      <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);">Structurele contentshift</span>
+      <span style="height:1px;flex:1;background:rgba(255,255,255,0.1);"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+      <div style="padding:6px 10px;border-right:1px solid var(--grey-2);">
+        <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:3px;">PD's en Sales</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Stop scripting — overschakelen naar <b>documenteren</b>: wat heeft ION de voorbije maand gerealiseerd?</span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>PD's als primaire contentdragers — <b>inhoudelijk het diepst</b>; Sales als aanvulling — <b>het vlotst op camera</b></span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Overweeg <b>Koen</b> (of één vaste schakel) als verbindende factor — enkel rond info die extern gedeeld kan worden</span></li>
+        </ul>
+      </div>
+      <div style="padding:6px 10px;">
+        <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:3px;">Vaste gezichten — compounding effect</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Intern:</b> snellere samenwerking, hogere productiesnelheid &amp; kwaliteit per shoot</span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Extern:</b> meer herkenbaarheid, meer vertrouwen, sterkere personal brands die voor ION werken</span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Beperkt aantal vaste gezichten &gt; steeds nieuwe mensen — het publiek volgt <i>personen</i></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STRATEGIC NOTES ── -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px;">
+
+    <div style="background:var(--black);border-radius:4px;padding:7px 10px;border-left:3px solid var(--pink);">
+      <div style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">🎯 Volgende shoot — nieuwe aanpak</div>
+      <div style="font-size:6.5pt;color:rgba(255,255,255,0.75);line-height:1.6;">De volgende shoot pakken we aan met <b style="color:white;">authentieke content</b>: gewoon tonen en uitleggen wat ION doet, met echte interactie van stakeholders — bewoners, huurders, buurtbewoners.</div>
+    </div>
+
+    <div style="background:var(--grey-1);border-radius:4px;padding:7px 10px;border-left:3px solid #e8a000;">
+      <div style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#b87800;margin-bottom:4px;">⚠ Aandachtspunt — gebroken feedbackloop</div>
+      <div style="font-size:6.5pt;color:#444;line-height:1.6;">Video's worden opgenomen en soms pas <b>3 maanden later gepost</b>. Daardoor ontbreekt de directe feedbackloop die we bij andere klanten wel hebben na een volledige batch content.</div>
+    </div>
+
+    <div style="background:var(--grey-1);border-radius:4px;padding:7px 10px;border-left:3px solid var(--black);">
+      <div style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--black);margin-bottom:4px;">⬡ Vastgoedbelegger.be — strategische hefboom</div>
+      <div style="font-size:6.5pt;color:#444;line-height:1.6;">
+        <div style="display:flex;gap:4px;margin-bottom:2px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Onafhankelijke lead capture</b> buiten ION-branding</span></div>
+        <div style="display:flex;gap:4px;margin-bottom:2px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Inzetbaar <b>naast</b> ION voor bredere doelgroep</span></div>
+        <div style="display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Toekomst van content:</b> verschillende formats op verschillende accounts trekt verschillende doelgroepen aan — de futureproof manier om te groeien</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="ion-logo">ION<span>.</span></div>
+  <div class="footer-meta">
+    Confidentieel — enkel voor intern gebruik<br>
+    Organische data okt 2025 – feb 2026 · Bron: Statistieken IONshorts.xlsx<br>
+    * Views zijn minimumwaarden — video's blijven continu views accumuleren
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>IONshorts — 5 Maanden Rapport</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Light'), url('klavika-light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Regular'), url('klavika-regular-italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Medium'), url('klavika-medium.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Klavika';
+    src: local('Klavika Bold'), url('klavika-bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #0a0a0a;
+    --white:   #ffffff;
+    --pink:    #e8003d;        /* ION accent — refined hot pink/red */
+    --grey-1:  #f5f5f5;
+    --grey-2:  #e8e8e8;
+    --grey-3:  #999;
+    --ig:      #E1306C;
+    --fb:      #1877F2;
+    --li:      #0A66C2;
+    --tt:      #0a0a0a;
+    --yt:      #FF0000;
+  }
+
+  body {
+    font-family: 'Klavika', 'Inter', sans-serif;
+    font-size: 8.5pt;
+    color: var(--black);
+    background: var(--white);
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 5mm 10mm 5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left {}
+  .header-tagline {
+    font-size: 7pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pink);
+    margin-bottom: 4px;
+  }
+  .header h1 {
+    font-size: 17pt;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: var(--white);
+  }
+  .header h1 span { color: var(--pink); }
+  .header-right {
+    text-align: right;
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+  }
+  .header-right strong { color: var(--white); }
+
+  /* ── BODY WRAPPER ── */
+  .body {
+    padding: 4mm 10mm 4mm;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--grey-3);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--grey-2);
+  }
+
+  .mb-8  { margin-bottom: 5px; }
+  .mb-10 { margin-bottom: 6px; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+
+  /* ── KPI FOLLOWER CARDS ── */
+  .kpi {
+    background: var(--grey-1);
+    border-radius: 4px;
+    padding: 5px 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+  }
+  .kpi.ig::before { background: var(--ig); }
+  .kpi.fb::before { background: var(--fb); }
+  .kpi.li::before { background: var(--li); }
+  .kpi.tt::before { background: var(--tt); }
+  .kpi.yt::before { background: var(--yt); }
+  .kpi.tot::before { background: var(--pink); }
+
+  .kpi .platform {
+    font-size: 6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--grey-3);
+    margin-bottom: 3px;
+  }
+  .kpi .growth {
+    font-size: 12pt;
+    font-weight: 900;
+    color: var(--black);
+    line-height: 1;
+  }
+  .kpi.tot .growth { color: var(--pink); }
+  .kpi .abs {
+    font-size: 6.5pt;
+    color: var(--grey-3);
+    margin-top: 2px;
+  }
+  .kpi .range {
+    font-size: 6pt;
+    color: #bbb;
+    margin-top: 1px;
+  }
+
+  /* ── VIEWS PANEL ── */
+  .views-panel {
+    background: var(--black);
+    border-radius: 4px;
+    padding: 6px 9px;
+    color: var(--white);
+  }
+  .views-panel .vp-label {
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 7px;
+  }
+  .month-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 2px;
+  }
+  .month-row:last-child { margin-bottom: 0; }
+  .m-label {
+    font-size: 7pt;
+    font-weight: 600;
+    width: 52px;
+    flex-shrink: 0;
+    color: rgba(255,255,255,0.8);
+  }
+  .bar-track {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    height: 8px;
+  }
+  .bar-fill {
+    height: 8px;
+    border-radius: 2px;
+    background: var(--pink);
+  }
+  .m-val {
+    font-size: 7pt;
+    font-weight: 700;
+    width: 52px;
+    text-align: right;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .views-summary {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 4px;
+    padding-top: 4px;
+    display: flex;
+    gap: 12px;
+  }
+  .vs-item {}
+  .vs-num {
+    font-size: 9pt;
+    font-weight: 900;
+    color: var(--pink);
+    line-height: 1;
+  }
+  .vs-lbl {
+    font-size: 6pt;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+  }
+
+  /* ── VIDEO TABLES ── */
+  .video-block {
+    border: 1px solid var(--grey-2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .vb-head {
+    background: var(--black);
+    color: var(--white);
+    padding: 5px 9px;
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vb-head.worst { background: #1a0005; }
+  .vb-head .vb-badge {
+    font-size: 6pt;
+    background: var(--pink);
+    color: white;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .vb-head.worst .vb-badge { background: #e8003d88; color: #ffaabc; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-size: 6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--grey-3);
+    padding: 3px 7px 2px;
+    text-align: left;
+    background: var(--grey-1);
+    border-bottom: 1px solid var(--grey-2);
+  }
+  th.r { text-align: right; }
+  td {
+    font-size: 7pt;
+    padding: 2.5px 7px;
+    border-bottom: 1px solid #f2f2f2;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  td.bold { font-weight: 700; }
+
+  .rank-num {
+    font-weight: 700;
+    font-size: 7pt;
+    color: var(--grey-3);
+  }
+  .rank-1 { color: #b8860b; }
+  .rank-2 { color: #888; }
+  .rank-3 { color: #a0522d; }
+  .rank-bad { color: var(--pink); }
+
+  .views-pill {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .worst .views-pill { background: #fff0f3; color: var(--pink); }
+
+  .channel-dots { font-size: 6pt; color: var(--grey-3); }
+
+  /* ── ANALYSIS BOXES ── */
+  .analysis-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+
+  .abox {
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .abox-head {
+    padding: 5px 9px;
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .abox-body {
+    padding: 5px 8px;
+  }
+  .abox ul { list-style: none; padding: 0; }
+  .abox li {
+    font-size: 6.5pt;
+    line-height: 1.45;
+    padding: 1.5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    gap: 5px;
+    align-items: flex-start;
+  }
+  .abox li:last-child { border-bottom: none; }
+  .abox li .icon { flex-shrink: 0; margin-top: 1px; }
+  .abox li b { font-weight: 700; }
+
+  .abox.stop .abox-head { background: #1a0005; color: var(--pink); }
+  .abox.stop .abox-body { background: #fff8f9; }
+  .abox.stop li .icon { color: var(--pink); }
+
+  .abox.go .abox-head { background: #001a09; color: #00c851; }
+  .abox.go .abox-body { background: #f6fff9; }
+  .abox.go li .icon { color: #2e7d32; }
+
+  .abox.tips .abox-head { background: var(--black); color: rgba(255,255,255,0.7); }
+  .abox.tips .abox-head .icon { color: var(--pink); }
+  .abox.tips .abox-body { background: var(--grey-1); }
+  .abox.tips li .icon { color: var(--pink); }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer {
+    background: #fffbf0;
+    border: 1px solid #ffe082;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 6pt;
+    color: #7a5c00;
+    margin-bottom: 5px;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .disclaimer .di { flex-shrink: 0; font-size: 8pt; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--black);
+    padding: 3mm 10mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer .ion-logo {
+    font-size: 12pt;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .footer .ion-logo span { color: var(--pink); }
+  .footer .footer-meta {
+    font-size: 6pt;
+    color: rgba(255,255,255,0.35);
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  @media print {
+    body { margin: 0; width: 210mm; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div class="header-left">
+    <div style="display:flex;align-items:flex-end;gap:6px;margin-bottom:6px;">
+      <img src="ion_logo_wit.png" style="height:18px;width:auto;" alt="ION logo">
+    </div>
+    <div class="header-tagline">Organische Shorts</div>
+    <h1>ION<span>shorts</span><br>5 Maanden</h1>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <img src="noads_transparent.png" style="height:22px;width:auto;margin-left:3px;" alt="No Ads logo">
+      <span style="font-family:'Klavika',sans-serif;font-weight:700;font-size:13px;color:white;letter-spacing:0.5px;line-height:1;display:inline-block;">NO ADS</span>
+    </div>
+    <div class="header-right">
+      <strong>Oktober 2025 – Februari 2026</strong><br>
+      47 videos gepubliceerd<br>
+      1.758.092 totale views*<br>
+      Organisch bereik — geen betaalde promotie
+    </div>
+  </div>
+</div>
+
+<!-- ══ LOGO PREVIEW ══ TIJDELIJK VERWIJDERD ══ -->
+<div style="display:none">
+  <div>
+
+    <!-- 1: geen top 3 -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" viewBox="0 2 26 22" style="display:block;margin:0 auto 2px">
+      <rect x="1"  y="15" width="7" height="7" rx="1.2" fill="#888" transform="rotate(-6,4.5,18.5)"/>
+      <rect x="18" y="14" width="7" height="7" rx="1.2" fill="#888" transform="rotate(8,21.5,17.5)"/>
+      <rect x="4"  y="7"  width="5" height="5" rx="1"   fill="#aaa" transform="rotate(-14,6.5,9.5)"/>
+      <rect x="11" y="9"  width="6" height="6" rx="1"   fill="#bbb" transform="rotate(5,14,12)"/>
+      <rect x="20" y="6"  width="5" height="5" rx="1"   fill="#aaa" transform="rotate(-10,22.5,8.5)"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">1</div></div>
+
+    <!-- 2: NA pixel basis -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="0 0 33 19" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="0"  y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="0"  y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="0"  y="12" width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="0"  y="16" width="3" height="3" rx=".4" fill="#666"/><rect x="4"  y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="8"  y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="12" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="12" y="4"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="12" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+      <rect x="12" y="12" width="3" height="3" rx=".4" fill="#888"/><rect x="12" y="16" width="3" height="3" rx=".4" fill="#666"/>
+      <rect x="22" y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="26" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="18" y="4"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="30" y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="18" y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="22" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+      <rect x="26" y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="30" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+      <rect x="18" y="12" width="3" height="3" rx=".4" fill="#888"/><rect x="30" y="12" width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="18" y="16" width="3" height="3" rx=".4" fill="#666"/><rect x="30" y="16" width="3" height="3" rx=".4" fill="#666"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">2</div></div>
+
+    <!-- 3: NA bold (sq=4, step=5) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="0 0 40 24" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="4" height="4" rx=".5" fill="#eee"/><rect x="0"  y="5"  width="4" height="4" rx=".5" fill="#ccc"/>
+      <rect x="0"  y="10" width="4" height="4" rx=".5" fill="#aaa"/><rect x="0"  y="15" width="4" height="4" rx=".5" fill="#888"/>
+      <rect x="0"  y="20" width="4" height="4" rx=".5" fill="#666"/><rect x="5"  y="5"  width="4" height="4" rx=".5" fill="#ccc"/>
+      <rect x="10" y="10" width="4" height="4" rx=".5" fill="#aaa"/><rect x="15" y="0"  width="4" height="4" rx=".5" fill="#eee"/>
+      <rect x="15" y="5"  width="4" height="4" rx=".5" fill="#ccc"/><rect x="15" y="10" width="4" height="4" rx=".5" fill="#aaa"/>
+      <rect x="15" y="15" width="4" height="4" rx=".5" fill="#888"/><rect x="15" y="20" width="4" height="4" rx=".5" fill="#666"/>
+      <rect x="24" y="0"  width="4" height="4" rx=".5" fill="#eee"/><rect x="29" y="0"  width="4" height="4" rx=".5" fill="#eee"/>
+      <rect x="20" y="5"  width="4" height="4" rx=".5" fill="#ccc"/><rect x="35" y="5"  width="4" height="4" rx=".5" fill="#ccc"/>
+      <rect x="20" y="10" width="4" height="4" rx=".5" fill="#aaa"/><rect x="25" y="10" width="4" height="4" rx=".5" fill="#aaa"/>
+      <rect x="30" y="10" width="4" height="4" rx=".5" fill="#aaa"/><rect x="35" y="10" width="4" height="4" rx=".5" fill="#aaa"/>
+      <rect x="20" y="15" width="4" height="4" rx=".5" fill="#888"/><rect x="35" y="15" width="4" height="4" rx=".5" fill="#888"/>
+      <rect x="20" y="20" width="4" height="4" rx=".5" fill="#666"/><rect x="35" y="20" width="4" height="4" rx=".5" fill="#666"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">3</div></div>
+
+    <!-- 4: NA italic (skewX) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="-2 0 37 19" style="display:block;margin:0 auto 2px">
+      <g transform="skewX(-10)">
+        <rect x="0"  y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="0"  y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+        <rect x="0"  y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="0"  y="12" width="3" height="3" rx=".4" fill="#888"/>
+        <rect x="0"  y="16" width="3" height="3" rx=".4" fill="#666"/><rect x="4"  y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+        <rect x="8"  y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="12" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+        <rect x="12" y="4"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="12" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+        <rect x="12" y="12" width="3" height="3" rx=".4" fill="#888"/><rect x="12" y="16" width="3" height="3" rx=".4" fill="#666"/>
+        <rect x="22" y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="26" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+        <rect x="18" y="4"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="30" y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+        <rect x="18" y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="22" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+        <rect x="26" y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="30" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+        <rect x="18" y="12" width="3" height="3" rx=".4" fill="#888"/><rect x="30" y="12" width="3" height="3" rx=".4" fill="#888"/>
+        <rect x="18" y="16" width="3" height="3" rx=".4" fill="#666"/><rect x="30" y="16" width="3" height="3" rx=".4" fill="#666"/>
+      </g>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">4</div></div>
+
+    <!-- 5: NA compact 4-row -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="32" height="19" viewBox="0 0 30 15" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="0"  y="4"  width="3" height="3" rx=".4" fill="#bbb"/>
+      <rect x="0"  y="8"  width="3" height="3" rx=".4" fill="#888"/><rect x="0"  y="12" width="3" height="3" rx=".4" fill="#666"/>
+      <rect x="4"  y="4"  width="3" height="3" rx=".4" fill="#bbb"/><rect x="8"  y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="8"  y="4"  width="3" height="3" rx=".4" fill="#bbb"/><rect x="8"  y="8"  width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="8"  y="12" width="3" height="3" rx=".4" fill="#666"/>
+      <rect x="17" y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="21" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="14" y="4"  width="3" height="3" rx=".4" fill="#bbb"/><rect x="24" y="4"  width="3" height="3" rx=".4" fill="#bbb"/>
+      <rect x="14" y="8"  width="3" height="3" rx=".4" fill="#888"/><rect x="18" y="8"  width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="22" y="8"  width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="14" y="12" width="3" height="3" rx=".4" fill="#666"/><rect x="24" y="12" width="3" height="3" rx=".4" fill="#666"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">5</div></div>
+
+    <!-- 6: NA rounded (rx groot = bijna cirkels) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="0 0 33 19" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="3" height="3" rx="1.5" fill="#eee"/><rect x="0"  y="4"  width="3" height="3" rx="1.5" fill="#ccc"/>
+      <rect x="0"  y="8"  width="3" height="3" rx="1.5" fill="#aaa"/><rect x="0"  y="12" width="3" height="3" rx="1.5" fill="#888"/>
+      <rect x="0"  y="16" width="3" height="3" rx="1.5" fill="#666"/><rect x="4"  y="4"  width="3" height="3" rx="1.5" fill="#ccc"/>
+      <rect x="8"  y="8"  width="3" height="3" rx="1.5" fill="#aaa"/><rect x="12" y="0"  width="3" height="3" rx="1.5" fill="#eee"/>
+      <rect x="12" y="4"  width="3" height="3" rx="1.5" fill="#ccc"/><rect x="12" y="8"  width="3" height="3" rx="1.5" fill="#aaa"/>
+      <rect x="12" y="12" width="3" height="3" rx="1.5" fill="#888"/><rect x="12" y="16" width="3" height="3" rx="1.5" fill="#666"/>
+      <rect x="22" y="0"  width="3" height="3" rx="1.5" fill="#eee"/><rect x="26" y="0"  width="3" height="3" rx="1.5" fill="#eee"/>
+      <rect x="18" y="4"  width="3" height="3" rx="1.5" fill="#ccc"/><rect x="30" y="4"  width="3" height="3" rx="1.5" fill="#ccc"/>
+      <rect x="18" y="8"  width="3" height="3" rx="1.5" fill="#aaa"/><rect x="22" y="8"  width="3" height="3" rx="1.5" fill="#aaa"/>
+      <rect x="26" y="8"  width="3" height="3" rx="1.5" fill="#aaa"/><rect x="30" y="8"  width="3" height="3" rx="1.5" fill="#aaa"/>
+      <rect x="18" y="12" width="3" height="3" rx="1.5" fill="#888"/><rect x="30" y="12" width="3" height="3" rx="1.5" fill="#888"/>
+      <rect x="18" y="16" width="3" height="3" rx="1.5" fill="#666"/><rect x="30" y="16" width="3" height="3" rx="1.5" fill="#666"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">6</div></div>
+
+    <!-- 7: NA + 3 floating squares (anti-gravity) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="25" viewBox="0 -6 33 25" style="display:block;margin:0 auto 2px">
+      <rect x="2"  y="-5" width="2" height="2" rx=".4" fill="#e8e8e8" transform="rotate(15,3,-4)"/>
+      <rect x="14" y="-4" width="2" height="2" rx=".4" fill="#e0e0e0" transform="rotate(-10,15,-3)"/>
+      <rect x="27" y="-5" width="2" height="2" rx=".4" fill="#e4e4e4" transform="rotate(20,28,-4)"/>
+      <rect x="0"  y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="0"  y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="0"  y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="0"  y="12" width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="0"  y="16" width="3" height="3" rx=".4" fill="#666"/><rect x="4"  y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="8"  y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="12" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="12" y="4"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="12" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+      <rect x="12" y="12" width="3" height="3" rx=".4" fill="#888"/><rect x="12" y="16" width="3" height="3" rx=".4" fill="#666"/>
+      <rect x="22" y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="26" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="18" y="4"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="30" y="4"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="18" y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="22" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+      <rect x="26" y="8"  width="3" height="3" rx=".4" fill="#aaa"/><rect x="30" y="8"  width="3" height="3" rx=".4" fill="#aaa"/>
+      <rect x="18" y="12" width="3" height="3" rx=".4" fill="#888"/><rect x="30" y="12" width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="18" y="16" width="3" height="3" rx=".4" fill="#666"/><rect x="30" y="16" width="3" height="3" rx=".4" fill="#666"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">7</div></div>
+
+    <!-- 8: NA two-tone (N donker, A licht) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="0 0 33 19" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="3" height="3" rx=".4" fill="#999"/><rect x="0"  y="4"  width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="0"  y="8"  width="3" height="3" rx=".4" fill="#777"/><rect x="0"  y="12" width="3" height="3" rx=".4" fill="#666"/>
+      <rect x="0"  y="16" width="3" height="3" rx=".4" fill="#555"/><rect x="4"  y="4"  width="3" height="3" rx=".4" fill="#888"/>
+      <rect x="8"  y="8"  width="3" height="3" rx=".4" fill="#777"/><rect x="12" y="0"  width="3" height="3" rx=".4" fill="#999"/>
+      <rect x="12" y="4"  width="3" height="3" rx=".4" fill="#888"/><rect x="12" y="8"  width="3" height="3" rx=".4" fill="#777"/>
+      <rect x="12" y="12" width="3" height="3" rx=".4" fill="#666"/><rect x="12" y="16" width="3" height="3" rx=".4" fill="#555"/>
+      <rect x="22" y="0"  width="3" height="3" rx=".4" fill="#eee"/><rect x="26" y="0"  width="3" height="3" rx=".4" fill="#eee"/>
+      <rect x="18" y="4"  width="3" height="3" rx=".4" fill="#ddd"/><rect x="30" y="4"  width="3" height="3" rx=".4" fill="#ddd"/>
+      <rect x="18" y="8"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="22" y="8"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="26" y="8"  width="3" height="3" rx=".4" fill="#ccc"/><rect x="30" y="8"  width="3" height="3" rx=".4" fill="#ccc"/>
+      <rect x="18" y="12" width="3" height="3" rx=".4" fill="#bbb"/><rect x="30" y="12" width="3" height="3" rx=".4" fill="#bbb"/>
+      <rect x="18" y="16" width="3" height="3" rx=".4" fill="#aaa"/><rect x="30" y="16" width="3" height="3" rx=".4" fill="#aaa"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">8</div></div>
+
+    <!-- 9: NA scattered (zelfde letters maar squares iets verspreid) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="0 0 34 20" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="3" height="3" rx=".4" fill="#eee" transform="rotate(-5,1.5,1.5)"/>
+      <rect x="0"  y="4"  width="3" height="3" rx=".4" fill="#ccc" transform="rotate( 3,1.5,5.5)"/>
+      <rect x="1"  y="9"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate(-4,2.5,10.5)"/>
+      <rect x="0"  y="13" width="3" height="3" rx=".4" fill="#888" transform="rotate( 6,1.5,14.5)"/>
+      <rect x="1"  y="17" width="3" height="3" rx=".4" fill="#666" transform="rotate(-3,2.5,18.5)"/>
+      <rect x="5"  y="4"  width="3" height="3" rx=".4" fill="#ccc" transform="rotate( 8,6.5,5.5)"/>
+      <rect x="8"  y="8"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate(-6,9.5,9.5)"/>
+      <rect x="12" y="0"  width="3" height="3" rx=".4" fill="#eee" transform="rotate( 5,13.5,1.5)"/>
+      <rect x="12" y="4"  width="3" height="3" rx=".4" fill="#ccc" transform="rotate(-4,13.5,5.5)"/>
+      <rect x="11" y="9"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate( 7,12.5,10.5)"/>
+      <rect x="12" y="13" width="3" height="3" rx=".4" fill="#888" transform="rotate(-5,13.5,14.5)"/>
+      <rect x="11" y="17" width="3" height="3" rx=".4" fill="#666" transform="rotate( 4,12.5,18.5)"/>
+      <rect x="22" y="0"  width="3" height="3" rx=".4" fill="#eee" transform="rotate(-7,23.5,1.5)"/>
+      <rect x="26" y="0"  width="3" height="3" rx=".4" fill="#eee" transform="rotate( 6,27.5,1.5)"/>
+      <rect x="18" y="4"  width="3" height="3" rx=".4" fill="#ccc" transform="rotate( 5,19.5,5.5)"/>
+      <rect x="30" y="4"  width="3" height="3" rx=".4" fill="#ccc" transform="rotate(-5,31.5,5.5)"/>
+      <rect x="18" y="8"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate(-4,19.5,9.5)"/>
+      <rect x="22" y="9"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate( 6,23.5,10.5)"/>
+      <rect x="26" y="8"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate(-3,27.5,9.5)"/>
+      <rect x="30" y="8"  width="3" height="3" rx=".4" fill="#aaa" transform="rotate( 7,31.5,9.5)"/>
+      <rect x="18" y="13" width="3" height="3" rx=".4" fill="#888" transform="rotate( 5,19.5,14.5)"/>
+      <rect x="31" y="13" width="3" height="3" rx=".4" fill="#888" transform="rotate(-6,32.5,14.5)"/>
+      <rect x="18" y="17" width="3" height="3" rx=".4" fill="#666" transform="rotate(-3,19.5,18.5)"/>
+      <rect x="30" y="17" width="3" height="3" rx=".4" fill="#666" transform="rotate( 4,31.5,18.5)"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">9</div></div>
+
+    <!-- 10: NA groot, minder squares (minimalistische N + A) -->
+    <div><svg xmlns="http://www.w3.org/2000/svg" width="36" height="21" viewBox="0 0 33 19" style="display:block;margin:0 auto 2px">
+      <rect x="0"  y="0"  width="3" height="7" rx=".5" fill="#ccc"/>
+      <rect x="0"  y="9"  width="3" height="7" rx=".5" fill="#888"/>
+      <rect x="12" y="0"  width="3" height="7" rx=".5" fill="#ccc"/>
+      <rect x="12" y="9"  width="3" height="7" rx=".5" fill="#888"/>
+      <rect x="3"  y="3"  width="4" height="3" rx=".5" fill="#bbb" transform="rotate(30,5,4.5)"/>
+      <rect x="7"  y="9"  width="4" height="3" rx=".5" fill="#999" transform="rotate(30,9,10.5)"/>
+      <rect x="21" y="0"  width="3" height="3" rx=".5" fill="#eee"/>
+      <rect x="27" y="0"  width="3" height="3" rx=".5" fill="#eee"/>
+      <rect x="18" y="0"  width="3" height="7" rx=".5" fill="#ccc"/>
+      <rect x="18" y="9"  width="3" height="7" rx=".5" fill="#888"/>
+      <rect x="30" y="0"  width="3" height="7" rx=".5" fill="#ccc"/>
+      <rect x="30" y="9"  width="3" height="7" rx=".5" fill="#888"/>
+      <rect x="18" y="8"  width="15" height="3" rx=".5" fill="#aaa"/>
+    </svg><div style="font-family:'Anton',sans-serif;font-size:4.5pt;color:white;letter-spacing:1px">NO ADS</div>
+    <div style="font-size:3.5pt;color:rgba(255,255,255,.2);margin-top:1px">10</div></div>
+
+  </div>
+</div>
+
+<!-- ══ BODY ══ -->
+<div class="body">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <span class="di">⚠</span>
+    <span><strong>* Opgelet:</strong> Alle viewcijfers werden op een specifiek moment manueel geregistreerd. Omdat video's continu views, likes en comments blijven verzamelen, liggen de werkelijke cijfers <strong>hoger</strong> dan wat hier vermeld staat. Beschouw deze data als minimumwaarden.</span>
+  </div>
+
+  <!-- ── SECTION 1: FOLLOWERS + VIEWS ── -->
+  <div class="section-label mb-8">Followergroei per kanaal — Oktober 2025 → Maart 2026</div>
+
+  <div class="grid-6 mb-10">
+    <div class="kpi ig">
+      <div class="platform">Instagram</div>
+      <div class="growth">+14,6%</div>
+      <div class="abs">+902 volgers</div>
+      <div class="range">6.180 → 7.082</div>
+    </div>
+    <div class="kpi fb">
+      <div class="platform">Facebook</div>
+      <div class="growth">+5,3%</div>
+      <div class="abs">+601 volgers</div>
+      <div class="range">11.299 → 11.900</div>
+    </div>
+    <div class="kpi li">
+      <div class="platform">LinkedIn</div>
+      <div class="growth">+3,8%</div>
+      <div class="abs">+661 volgers</div>
+      <div class="range">17.356 → 18.017</div>
+    </div>
+    <div class="kpi tt">
+      <div class="platform">TikTok</div>
+      <div class="growth">+1.167%</div>
+      <div class="abs">+525 volgers</div>
+      <div class="range">45 → 570</div>
+    </div>
+    <div class="kpi yt">
+      <div class="platform">YouTube</div>
+      <div class="growth">+28,6%</div>
+      <div class="abs">+18 volgers</div>
+      <div class="range">63 → 81</div>
+    </div>
+    <div class="kpi tot">
+      <div class="platform">Totaal</div>
+      <div class="growth">+7,8%</div>
+      <div class="abs" style="font-size:9pt;font-weight:900;color:var(--black);">+2.707 volgers</div>
+      <div class="range">34.943 → 37.650</div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: VIEWS BAR ── -->
+  <div class="section-label mb-8">Views per maand (alle kanalen gecombineerd)*</div>
+
+  <div class="views-panel mb-10">
+    <div class="month-row">
+      <span class="m-label">Oktober</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div>
+      <span class="m-val">704.120* <span style="font-size:5.5pt;opacity:0.5;">· 14 vid · gem ~50.300</span></span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">November</span>
+      <div class="bar-track"><div class="bar-fill" style="width:53%;"></div></div>
+      <span class="m-val">376.701* <span style="font-size:5.5pt;opacity:0.5;">· 8 vid · gem ~47.100</span></span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">December</span>
+      <div class="bar-track"><div class="bar-fill" style="width:48%;"></div></div>
+      <span class="m-val">341.088* <span style="font-size:5.5pt;opacity:0.5;">· 13 vid · gem ~26.200</span></span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">Januari</span>
+      <div class="bar-track"><div class="bar-fill" style="width:33%;"></div></div>
+      <span class="m-val">235.054* <span style="font-size:5.5pt;opacity:0.5;">· 10 vid · gem ~23.500</span></span>
+    </div>
+    <div class="month-row">
+      <span class="m-label">Februari ⏳</span>
+      <div class="bar-track"><div class="bar-fill" style="width:14%; opacity:0.6;"></div></div>
+      <span class="m-val" style="opacity:0.6;">101.129* <span style="font-size:5.5pt;opacity:0.5;">· 9 vid · gem ~11.200</span></span>
+    </div>
+    <div class="views-summary">
+      <div class="vs-item">
+        <div class="vs-num">1.758.092*</div>
+        <div class="vs-lbl">Totaal views</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">47</div>
+        <div class="vs-lbl">Video's gepost</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">~37.400*</div>
+        <div class="vs-lbl">Gem. per video</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">~20.400*</div>
+        <div class="vs-lbl">Mediaan views</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">Facebook</div>
+        <div class="vs-lbl">Beste kanaal</div>
+      </div>
+      <div class="vs-item">
+        <div class="vs-num">TikTok</div>
+        <div class="vs-lbl">Snelst groeiend</div>
+      </div>
+    </div>
+    <div style="font-size:6pt;color:rgba(255,255,255,0.25);margin-top:5px;">⏳ Februari is een lopende maand — data nog niet volledig</div>
+  </div>
+
+  <!-- ── SECTION 3: TOP + WORST ── -->
+  <div class="section-label mb-8">Videoprestaties — Top &amp; Slechtste performers</div>
+
+  <div class="grid-2 mb-10">
+
+    <!-- TOP 5 -->
+    <div class="video-block">
+      <div class="vb-head">
+        <span>Top 5 Videos</span>
+        <span class="vb-badge">Totale views*</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16px;">#</th>
+            <th>Video</th>
+            <th>Maand</th>
+            <th class="r">Views*</th>
+            <th class="r">Best kanaal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num rank-1">1</td>
+            <td class="bold">Villa (Maarten)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill">269.118</span></td>
+            <td class="r channel-dots">IG · FB · TT</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-2">2</td>
+            <td class="bold">BTW (Davy)</td>
+            <td style="font-size:6.5pt;color:#999;">Jan</td>
+            <td class="r"><span class="views-pill">125.375</span></td>
+            <td class="r channel-dots">FB dominant</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-3">3</td>
+            <td class="bold">WBP (Davy)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill">125.194</span></td>
+            <td class="r channel-dots">FB · TT · LI</td>
+          </tr>
+          <tr>
+            <td class="rank-num">4</td>
+            <td class="bold">Kortrijk (Kristof)</td>
+            <td style="font-size:6.5pt;color:#999;">Nov</td>
+            <td class="r"><span class="views-pill">113.736</span></td>
+            <td class="r channel-dots">FB dominant</td>
+          </tr>
+          <tr>
+            <td class="rank-num">5</td>
+            <td class="bold">Co-living II (Sander)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill">112.980</span></td>
+            <td class="r channel-dots">FB dominant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- WORST 5 -->
+    <div class="video-block worst">
+      <div class="vb-head worst">
+        <span>Slechtste 5 Videos</span>
+        <span class="vb-badge">Totale views*</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:16px;">#</th>
+            <th>Video</th>
+            <th>Maand</th>
+            <th class="r">Views*</th>
+            <th class="r">Reden</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-num rank-bad">1</td>
+            <td class="bold">Co-living (Sander)</td>
+            <td style="font-size:6.5pt;color:#999;">Okt</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">6.741</span></td>
+            <td class="r channel-dots">Geen locatie in hook</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">2</td>
+            <td class="bold">GRESB (Sam)</td>
+            <td style="font-size:6.5pt;color:#999;">Dec</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">7.027</span></td>
+            <td class="r channel-dots">Technisch, te niche</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">3</td>
+            <td class="bold">NL naar België (Rik)</td>
+            <td style="font-size:6.5pt;color:#999;">Feb</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">7.420</span></td>
+            <td class="r channel-dots">NL locatie, BE publiek</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">4</td>
+            <td class="bold">Broedplaats (Rik)</td>
+            <td style="font-size:6.5pt;color:#999;">Jan</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">8.076</span></td>
+            <td class="r channel-dots">Te niche, geen brede relevantie</td>
+          </tr>
+          <tr>
+            <td class="rank-num rank-bad">5</td>
+            <td class="bold">Meyboom (Aurélien)</td>
+            <td style="font-size:6.5pt;color:#999;">Feb</td>
+            <td class="r"><span class="views-pill" style="background:#fff0f3;color:var(--pink);">8.397</span></td>
+            <td class="r channel-dots">Locatie te vaag, niet specifiek</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ── SECTION 4: BEFORE / AFTER ── -->
+  <div class="section-label mb-8">Voor vs Na — Organisch bereik per kanaal <span style="font-weight:400;color:#bbb;font-size:6pt;text-transform:none;letter-spacing:0;">⚠ Periodes niet vergelijkbaar (verschillende tijdshorizonten) — geen directe conclusies mogelijk</span></div>
+
+  <!-- CHANNEL COMPARISON TABLE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+
+    <!-- FACEBOOK -->
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">Facebook</span>
+        <span style="font-size:6pt;background:#1877F2;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">f</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">100–500</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">views/video organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">34 · 141 · 191 · 212 · 242<br>245 · 271 · 277 · 278 · 466<br><span style="color:#e8a000;">⚠ Vermoedelijk geboost: 5.5K · 6K · 6K · 7.2K · 7.8K · 7.8K · 8.2K · 9K · 9.4K · 9.9K · 10K · 12K · 14K · 19K · 65K</span></div>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">~28.600<span style="font-size:8pt;font-weight:400;color:rgba(255,255,255,0.3);">*</span></div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">gem. views/video op FB</div>
+          <div style="margin-top:5px;display:flex;align-items:center;gap:4px;">
+            <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">×57–286</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);">meer bereik</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">Instagram</span>
+        <span style="font-size:6pt;background:#E1306C;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">IG</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">400–1.500</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">views/video — 100% organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">448 · 457 · 468 · 478 · 482 · 484 · 504 · 724 · 858 · 867<br><span style="color:#888;">Geen enkele post geboost. Gewoon consistent laag organisch bereik.</span></div>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">~6.500<span style="font-size:8pt;font-weight:400;color:rgba(255,255,255,0.3);">*</span></div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">gem. views/video op IG</div>
+          <div style="margin-top:5px;display:flex;align-items:center;gap:4px;">
+            <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">×4–16</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);">meer bereik</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN -->
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">LinkedIn</span>
+        <span style="font-size:6pt;background:#0A66C2;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">in</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór — feb–sep 2025 (7 mnd)</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">160.886</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">impressies · 100% organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">
+            ~22.984/maand<br>
+            3.070 reacties · 146 comments<br>
+            <span style="color:#888;">0 gesponsord</span>
+          </div>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts — okt 2025–feb 2026 (5 mnd)</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">370.914</div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">impressies · 100% organisch</div>
+          <div style="margin-top:5px;font-size:6pt;color:rgba(255,255,255,0.5);line-height:1.7;">
+            ~74.183/maand<br>
+            3.849 reacties · 92 comments
+          </div>
+          <div style="margin-top:4px;display:flex;align-items:center;gap:4px;">
+            <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">+223,9%</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);">per maand</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TIKTOK + YOUTUBE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;margin-bottom:10px;">
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">TikTok</span>
+        <span style="font-size:6pt;background:#000;color:white;padding:1px 7px;border-radius:10px;font-weight:700;border:1px solid #555;">TT</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">45</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">volgers</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">Geen actieve aanwezigheid</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">570</div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">volgers — snelst groeiend</div>
+          <div style="margin-top:5px;display:flex;align-items:center;gap:4px;">
+            <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">+1.167%</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);">groei</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;">
+      <div style="background:var(--black);padding:5px 10px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);">YouTube</span>
+        <span style="font-size:6pt;background:#FF0000;color:white;padding:1px 7px;border-radius:10px;font-weight:700;">YT</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--white);">
+        <div style="padding:8px 10px;background:var(--grey-1);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:4px;">Vóór IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:#bbb;line-height:1;">63</div>
+          <div style="font-size:6.5pt;color:var(--grey-3);margin-top:2px;">subscribers</div>
+          <div style="margin-top:5px;font-size:6pt;color:#aaa;line-height:1.7;">Minimale activiteit</div>
+        </div>
+        <div style="padding:8px 10px;background:var(--black);">
+          <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">IONshorts</div>
+          <div style="font-size:16pt;font-weight:900;color:white;line-height:1;">81</div>
+          <div style="font-size:6.5pt;color:rgba(255,255,255,0.45);margin-top:2px;">subscribers — SEO-gericht</div>
+          <div style="margin-top:5px;display:flex;align-items:center;gap:4px;">
+            <span style="color:var(--pink);font-size:12pt;font-weight:900;">→</span>
+            <span style="font-size:10pt;font-weight:900;color:var(--pink);">+28,6%</span>
+            <span style="font-size:6pt;color:rgba(255,255,255,0.35);">groei</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STRATEGIC VALUE BLOCK ── -->
+  <div style="border:1.5px solid var(--pink);border-radius:5px;padding:8px 12px;margin-bottom:8px;background:#fafafa;">
+    <div style="font-size:7pt;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;">Waarom organische zichtbaarheid strategisch cruciaal is</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">📍 Top of mind</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Kopers nemen gemiddeld <b>14 touchpoints</b> voordat ze een beslissing nemen. Mensen kopen of investeren vandaag misschien niet — maar over 6, 12 of 24 maanden wel. Op dat moment moeten ze <b>spontaan aan ION denken</b> en rechtstreeks naar de website gaan — in plaats van eerst via Google of ChatGPT te zoeken. Hetzelfde geldt voor sollicitanten: wanneer iemand wil veranderen van job, moet ION het eerste bedrijf zijn dat opkomt.</div>
+      </div>
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">📈 Synergie met paid ads</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Organische zichtbaarheid maakt advertenties <b>efficiënter</b>: mensen die ION al kennen, klikken vaker en converteren sneller. Omgekeerd versterkt paid bereik ook de organische herkenbaarheid. De twee versterken elkaar — organisch bouwt vertrouwen, betaald versnelt. <b>Organische views zijn de belangrijkste leading indicator</b> — relevante kijkers die meerdere keren terugkomen bouwen top-of-mind awareness op die zich vertaalt in merkvoorkeur.</div>
+      </div>
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">🧪 Gratis ad-validatie</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Een video die organisch <b>+10.000 views</b> haalt over alle platformen, is bewezen content. Die kan rechtstreeks als advertentie worden ingezet — <b>zonder eerst budget te verbranden om te testen</b>. Zo werkt het organisch kanaal als gratis testomgeving die bepaalt wat werkt voordat er één euro aan ads gespendeerd wordt.</div>
+      </div>
+
+      <div>
+        <div style="font-size:6.5pt;font-weight:700;color:var(--black);margin-bottom:3px;">🎯 Meten &amp; opvolgen</div>
+        <div style="font-size:6pt;color:#444;line-height:1.55;">Organisch is minder direct meetbaar, maar de impact is reëel. Maak het meetbaar: <b>sales vraagt elke lead</b> hoe ze bij ION zijn terechtgekomen en of ze al video's hebben gezien. <b>HR vraagt elke kandidaat</b> hoe ze ION leren kennen. Log dit in CRM. Consistente zichtbaarheid rond vastgoedprojecten bouwt merkherkenning, vertrouwen, sales-pipeline én employer brand.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: ANALYSIS ── -->
+  <div class="section-label mb-8">Strategie — Analyse &amp; Aanbevelingen</div>
+
+  <div class="analysis-grid">
+
+    <div class="abox stop">
+      <div class="abox-head">
+        <span class="icon">✕</span> Wat stoppen we mee
+      </div>
+      <div class="abox-body">
+        <ul>
+          <li><span class="icon">✕</span><span><b>Seizoensgroeten</b> — iedereen post dan, concurrentie piekt, content heeft nul waarde voor de kijker; beter posten op momenten met minder concurrentie</span></li>
+          <li><span class="icon">✕</span><span><b>Puur technisch B2B</b> (GRESB, forward funding) — te niche voor shorts</span></li>
+          <li><span class="icon">✕</span><span><b>Scripted content</b></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="abox go">
+      <div class="abox-head">
+        <span class="icon">✓</span> Wat zetten we door
+      </div>
+      <div class="abox-body">
+        <ul>
+          <li><span class="icon">✓</span><span><b>Wetgeving, nieuws &amp; viral topics</b> — eigen variant maken van wat al viral gaat + actuele RE-topics zoals BTW (bewezen formule)</span></li>
+          <li><span class="icon">✓</span><span><b>Projectvoorstellingen</b> — mensen willen weten wat er gebouwd wordt in hun stad (zie Villa (Maarten): 269K views)</span></li>
+          <li><span class="icon">✓</span><span><span style="display:inline-block;background:var(--pink);color:white;font-size:5.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 5px;border-radius:3px;vertical-align:middle;margin-right:5px;">★ Suggestie</span><b>Overal posten</b> — TikTok snelst groeiend, YouTube cruciaal voor SEO &amp; vindbaarheid; overal posten: <span style="display:inline-block;background:#000;color:#fff;font-size:5.5pt;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">X</span> <span style="display:inline-block;background:#FFFC00;color:#000;font-size:5.5pt;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">Snapchat</span> <span style="display:inline-block;background:#000;color:#fff;font-size:5.5pt;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">Threads</span> — we hebben het toch, meer kanalen = meer kansen</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="abox tips">
+      <div class="abox-head">
+        <span class="icon" style="color:var(--pink);">→</span> Algemene tips
+      </div>
+      <div class="abox-body">
+        <ul>
+          <li><span class="icon">→</span><span><b>2x/week ritme</b> — woe &amp; vrij presteren beter</span></li>
+          <li><span class="icon">→</span><span><b>De gouden vraag</b> — kan een andere vastgoedspeler dit ook doen? Zo ja: niet doen</span></li>
+          <li><span class="icon">→</span><span><b>Unieke ION projecten</b> — toon wat niemand anders kan tonen</span></li>
+          <li><span class="icon">→</span><span><b>Document vs Create</b> — toon wat ION doet, echte gesprekken &amp; interacties op de werkvloer</span></li>
+          <li><span class="icon">→</span><span><b>Personage is cruciaal</b> — de persoon op camera bepaalt of mensen terugkomen</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── STRUCTURELE CONTENTSHIFT ── -->
+  <div style="border:1px solid var(--grey-2);border-radius:4px;overflow:hidden;margin-top:6px;">
+    <div style="background:var(--black);padding:4px 10px;display:flex;align-items:center;gap:6px;">
+      <span style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);">Structurele contentshift</span>
+      <span style="height:1px;flex:1;background:rgba(255,255,255,0.1);"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+      <div style="padding:6px 10px;border-right:1px solid var(--grey-2);">
+        <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:3px;">PD's en Sales</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Stop scripting — overschakelen naar <b>documenteren</b>: wat heeft ION de voorbije maand gerealiseerd?</span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>PD's als primaire contentdragers — <b>inhoudelijk het diepst</b>; Sales als aanvulling — <b>het vlotst op camera</b></span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Overweeg <b>Koen</b> (of één vaste schakel) als verbindende factor — enkel rond info die extern gedeeld kan worden</span></li>
+        </ul>
+      </div>
+      <div style="padding:6px 10px;">
+        <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--grey-3);margin-bottom:3px;">Vaste gezichten — compounding effect</div>
+        <ul style="list-style:none;padding:0;">
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Intern:</b> snellere samenwerking, hogere productiesnelheid &amp; kwaliteit per shoot</span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Extern:</b> meer herkenbaarheid, meer vertrouwen, sterkere personal brands die voor ION werken</span></li>
+          <li style="font-size:6.5pt;line-height:1.5;padding:1px 0;display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Beperkt aantal vaste gezichten &gt; steeds nieuwe mensen — het publiek volgt <i>personen</i></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STRATEGIC NOTES ── -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px;">
+
+    <div style="background:var(--black);border-radius:4px;padding:7px 10px;border-left:3px solid var(--pink);">
+      <div style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--pink);margin-bottom:4px;">🎯 Vanaf maart 2026 — nieuwe aanpak</div>
+      <div style="font-size:6.5pt;color:rgba(255,255,255,0.75);line-height:1.6;">Vanaf maart 2026 pakken we aan met <b style="color:white;">authentieke content</b>: gewoon tonen en uitleggen wat ION doet, met echte interactie van stakeholders — bewoners, huurders, buurtbewoners.</div>
+    </div>
+
+    <div style="background:var(--grey-1);border-radius:4px;padding:7px 10px;border-left:3px solid #e8a000;">
+      <div style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#b87800;margin-bottom:4px;">⚠ Aandachtspunt — gebroken feedbackloop</div>
+      <div style="font-size:6.5pt;color:#444;line-height:1.6;">Video's worden opgenomen en soms pas <b>3 maanden later gepost</b>. Daardoor ontbreekt de directe feedbackloop die we bij andere klanten wel hebben na een volledige batch content.</div>
+    </div>
+
+    <div style="background:var(--grey-1);border-radius:4px;padding:7px 10px;border-left:3px solid var(--black);">
+      <div style="font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--black);margin-bottom:4px;">⬡ Vastgoedbelegger.be — strategische hefboom</div>
+      <div style="font-size:6.5pt;color:#444;line-height:1.6;">
+        <div style="display:flex;gap:4px;margin-bottom:2px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Onafhankelijke lead capture</b> buiten ION-branding</span></div>
+        <div style="display:flex;gap:4px;margin-bottom:2px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span>Inzetbaar <b>naast</b> ION voor bredere doelgroep</span></div>
+        <div style="display:flex;gap:4px;"><span style="color:var(--pink);flex-shrink:0;">→</span><span><b>Toekomst van content:</b> verschillende formats op verschillende accounts trekt verschillende doelgroepen aan — de futureproof manier om te groeien</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="ion-logo"><img src="ion_logo_wit.png" style="height:16px;width:auto;" alt="ION logo"></div>
+  <div class="footer-meta" style="text-align:center;flex:1;">
+    Confidentieel — enkel voor intern gebruik<br>
+    Organische data okt 2025 – feb 2026 · Bron: Statistieken IONshorts.xlsx<br>
+    * Views zijn minimumwaarden — video's blijven continu views accumuleren
+  </div>
+  <div style="display:flex;align-items:center;gap:5px;">
+    <img src="noads_transparent.png" style="height:30px;width:auto;" alt="No Ads logo">
+    <span style="font-family:'Klavika',sans-serif;font-weight:700;font-size:17px;color:white;letter-spacing:0.5px;line-height:1;display:inline-block;">NO ADS</span>
+  </div>
+</div>
+
+</body>
+</html>
